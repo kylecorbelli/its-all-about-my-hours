@@ -1,0 +1,11 @@
+machine:
+  node:
+    version: 8.1.4
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm install --save-dev surge
+      - npm run build
+      - cp ~/its-all-about-my-hours/build/index.html ~/its-all-about-my-hours/build/200.html
+      - ~/its-all-about-my-hours/node_modules/.bin/surge --project ~/its-all-about-my-hours/build --domain itsallaboutmyhours.surge.sh
