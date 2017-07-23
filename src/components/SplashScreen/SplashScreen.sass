@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes')
+@import 'styles/shared.sass'
+
+@keyframes SplashScreen__clock-logo-spin
+  0%
+    transform: scale(0) rotate(0)
+  90%
+    transform: scale(1.2) rotate(360deg)
+  100%
+    transform: scale(1) rotate(360deg)
+
+@keyframes SplashScreen__headline-fade-up-and-in
+  0%
+    opacity: 0
+    transform: translateY(2em)
+  50%
+    opacity: 0
+    transform: translateY(2em)
+  70%
+    opacity: 0.70
+    transform: translateY(-0.4em)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+.SplashScreen
+  align-items: center
+  background-color: $pink
+  color: white
+  display: flex
+  flex-direction: column
+  height: 100vh
+  justify-content: center
+  padding: 20px
+
+.SplashScreen__clock-logo
+  animation: 0.8s linear 0s SplashScreen__clock-logo-spin
+  margin-bottom: 3em
+  width: 150px
+  path
+    fill: white
+
+.SplashScreen__headline-first-half,
+.SplashScreen__headline-second-half
+  font-family: 'Great Vibes', cursive
+  font-size: 3em
+  font-weight: normal
+  margin: 0
+  padding: 0
+  text-align: center
+
+.SplashScreen__headline-first-half
+  animation: SplashScreen__headline-fade-up-and-in 1.6s
+
+.SplashScreen__headline-second-half
+  animation: SplashScreen__headline-fade-up-and-in 2.2s
