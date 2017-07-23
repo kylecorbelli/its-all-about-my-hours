@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/classnames": "^2.2.0",
     "@types/jest": "^20.0.4",
     "@types/node": "^8.0.14",
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
+    "classnames": "^2.2.5",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "react": "^15.6.1",
