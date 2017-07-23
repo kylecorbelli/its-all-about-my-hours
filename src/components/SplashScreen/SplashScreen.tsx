@@ -2,17 +2,32 @@ import * as React from 'react'
 import * as classNames from 'classnames'
 import './SplashScreen.css'
 
-const clock: string = require('./clock-svg.svg');
+const clock: string = require('../../images/clock-svg.svg');
+
+interface Props {
+  readonly shouldComponentBeHidden: boolean
+}
 
 interface State {
   readonly shouldComponentBeFadedOut: boolean
   readonly shouldComponentBeHidden: boolean
 }
 
-export default class SplashScreen extends React.Component<{}, State> {
+export default class SplashScreen extends React.Component<Props, State> {
   state = {
     shouldComponentBeFadedOut: false,
     shouldComponentBeHidden: false,
+  }
+
+  constructor (props: Props) {
+    super(props)
+    const {
+      shouldComponentBeHidden,
+    } = this.props
+    this.state = {
+      shouldComponentBeFadedOut: false,
+      shouldComponentBeHidden,
+    }
   }
 
   componentDidMount (): void {
