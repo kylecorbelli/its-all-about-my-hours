@@ -26,12 +26,25 @@
 .SplashScreen
   align-items: center
   background-color: $pink
+  box-sizing: border-box
   color: white
   display: flex
   flex-direction: column
   height: 100vh
   justify-content: center
   padding: 20px
+  position: fixed
+  top: 0
+  left: 0
+  transition: opacity 0.4s ease-in
+  width: 100%
+
+.SplashScreen--faded-out
+  opacity: 0
+
+.SplashScreen--hidden
+  z-index: -500
+  display: none
 
 .SplashScreen__clock-logo
   animation: 0.8s linear 0s SplashScreen__clock-logo-spin

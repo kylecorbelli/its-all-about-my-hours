@@ -1,16 +1,54 @@
 import * as React from 'react'
+import * as classNames from 'classnames'
 import './SplashScreen.css'
 
-const clock = require('./clock-svg.svg');
+const clock: string = require('./clock-svg.svg');
 
-const SplashScreen = (): JSX.Element => (
-  <div className="SplashScreen">
-    <img src={clock} className="SplashScreen__clock-logo" alt="clock logo" />
-    <div className="SplashScreen__headline">
-      <h1 className="SplashScreen__headline-first-half">It’s All About</h1>
-      <h1 className="SplashScreen__headline-second-half">My Hours</h1>
-    </div>
-  </div>
-)
+interface State {
+  readonly shouldComponentBeFadedOut: boolean
+  readonly shouldComponentBeHidden: boolean
+}
 
-export default SplashScreen
+export default class SplashScreen extends React.Component<{}, State> {
+  state = {
+    shouldComponentBeFadedOut: false,
+    shouldComponentBeHidden: false,
+  }
+
+  componentDidMount (): void {
+    setTimeout(this.fadeOut.bind(this), 3500)
+    setTimeout(this.hideComponent.bind(this), 3900)
+  }
+
+  fadeOut (): void {
+    this.setState({
+      shouldComponentBeFadedOut: true,
+    })
+  }
+
+  hideComponent (): void {
+    this.setState({
+      shouldComponentBeHidden: true,
+    })
+  }
+
+  render (): JSX.Element {
+    const {
+      shouldComponentBeFadedOut,
+      shouldComponentBeHidden,
+    } = this.state
+    const splashScreenConditionalClasses = {
+      'SplashScreen--faded-out': shouldComponentBeFadedOut,
+      'SplashScreen--hidden': shouldComponentBeHidden,
+    }
+    return (
+      <div className={classNames('SplashScreen', splashScreenConditionalClasses)}>
+        <img src={clock} className="SplashScreen__clock-logo" alt="clock logo" />
+        <div className="SplashScreen__headline">
+          <h1 className="SplashScreen__headline-first-half">It’s All About</h1>
+          <h1 className="SplashScreen__headline-second-half">My Hours</h1>
+        </div>
+      </div>
+    )
+  }
+}
