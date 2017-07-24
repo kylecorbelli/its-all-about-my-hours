@@ -14,12 +14,10 @@ interface State {
 }
 
 export default class SplashScreen extends React.Component<Props, State> {
-  state = {
-    shouldComponentBeFadedOut: false,
-    shouldComponentBeHidden: false,
-  }
+  private fadeOutComponentSetTimeout: number
+  private hideComponentTimeout: number
 
-  constructor (props: Props) {
+  public constructor (props: Props) {
     super(props)
     const {
       shouldComponentBeHidden,
@@ -30,24 +28,17 @@ export default class SplashScreen extends React.Component<Props, State> {
     }
   }
 
-  componentDidMount (): void {
-    setTimeout(this.fadeOut.bind(this), 3500)
-    setTimeout(this.hideComponent.bind(this), 3900)
+  public componentDidMount (): void {
+    this.fadeOutComponentSetTimeout = setTimeout(this.fadeOutComponent.bind(this), 3500)
+    this.hideComponentTimeout = setTimeout(this.hideComponent.bind(this), 3900)
   }
 
-  fadeOut (): void {
-    this.setState({
-      shouldComponentBeFadedOut: true,
-    })
+  public componentWillUnmount (): void {
+    clearTimeout(this.fadeOutComponentSetTimeout)
+    clearTimeout(this.hideComponentTimeout)
   }
 
-  hideComponent (): void {
-    this.setState({
-      shouldComponentBeHidden: true,
-    })
-  }
-
-  render (): JSX.Element {
+  public render (): JSX.Element {
     const {
       shouldComponentBeFadedOut,
       shouldComponentBeHidden,
@@ -65,5 +56,17 @@ export default class SplashScreen extends React.Component<Props, State> {
         </div>
       </div>
     )
+  }
+
+  private fadeOutComponent (): void {
+    this.setState({
+      shouldComponentBeFadedOut: true,
+    })
+  }
+
+  private hideComponent (): void {
+    this.setState({
+      shouldComponentBeHidden: true,
+    })
   }
 }
