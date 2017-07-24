@@ -5,15 +5,15 @@ import {
 } from 'react-router-dom'
 import SiteHeader from './components/SiteHeader'
 import IncomeForm from './components/IncomeForm'
-import SplashScreen from './components/SplashScreen'
+import HoursResults from './components/HoursResults'
 
-const Routes = () => {
+const Routes = (): JSX.Element => {
   return (
     <Router>
       <div>
         <SiteHeader />
-        <Route exact path="/" component={IncomeForm} />
-        <SplashScreen shouldComponentBeHidden={true}/>
+        <Route exact={true} path="/" component={IncomeForm} />
+        <Route path="/hours-results" component={HoursResults} />
       </div>
     </Router>
   )
