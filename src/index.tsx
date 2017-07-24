@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import Routes from './Routez'
+import Routes from './Routes'
 import './styles/index.css'
 
 ReactDOM.render(
