@@ -58,7 +58,7 @@ export default class IncomeForm extends React.Component<Props, State> {
           <button type="submit">Calculate</button>
         </form>
         <Link to="/hours-results" >Results Page</Link>
-        <SplashScreen shouldComponentBeHidden={true} />
+        <SplashScreen shouldComponentBeHidden={false} />
       </div>
     )
   }
