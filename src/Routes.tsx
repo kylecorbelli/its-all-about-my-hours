@@ -10,7 +10,7 @@ import HoursResults from './components/HoursResults'
 const Routes = (): JSX.Element => {
   return (
     <Router>
-      <div>
+      <div className="Main">
         <SiteHeader />
         <Route exact={true} path="/" component={IncomeForm} />
         <Route path="/hours-results" component={HoursResults} />

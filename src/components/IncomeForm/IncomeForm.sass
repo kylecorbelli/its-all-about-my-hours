@@ -1,0 +1,73 @@
+@import 'styles/shared.sass'
+
+.IncomeForm
+  align-items: center
+  background: linear-gradient(-141deg, $light-green 0%, $blue 50%)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  flex: 1
+  justify-content: center
+  padding: 20px
+
+.IncomeForm__form
+  background-color: rgba(255, 255, 255, 0.65)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  height: 75vh
+  justify-content: space-around
+  max-height: 500px
+  max-width: 400px
+  min-height: 300px
+  padding: 20px
+  width: 100%
+
+.IncomeForm__form-headline
+  font-size: 1.5em
+  margin: -1em 0
+  text-align: center
+
+.IncomeForm__input-group
+  align-items: center
+  cursor: pointer
+  display: flex
+
+.IncomeForm__dollar-symbol
+  text-align: left
+  width: 30px
+
+.IncomeForm__text-input
+  background: none
+  border-bottom: 2px solid $gray
+  border: none
+  box-sizing: border-box
+  flex: 1
+  font-family: inherit
+  font-size: 1em
+  outline: none
+  padding: 15px 0
+  transition: border-color 0.4s ease-out
+  &::placeholder
+    transition: color 0.4s ease
+  &:focus
+    border-color: $pink
+    &::placeholder
+      color: $pink
+      transition: color 0.4s ease
+
+.IncomeForm__submit-button
+  background: none
+  border: 1px solid $pink
+  box-sizing: border-box
+  color: $pink
+  cursor: pointer
+  font-family: inherit
+  font-size: 1em
+  outline: none
+  padding: 20px
+  transition: background-color 0.4s ease
+  &:focus,
+  &:hover
+    background-color: $pink
+    color: white
