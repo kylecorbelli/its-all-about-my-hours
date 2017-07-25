@@ -66,7 +66,7 @@ export default class IncomeForm extends React.Component<Props, State> {
           </label>
           <button className="IncomeForm__submit-button" type="submit">Calculate</button>
         </form>
-        <SplashScreen shouldComponentBeHidden={false} />
+        <SplashScreen shouldComponentBeHidden={true} />
       </div>
     )
   }

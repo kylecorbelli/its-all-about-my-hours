@@ -19,3 +19,23 @@ $breakpoint-desktop-large: 1200px
 @mixin to($breakpoint)
   @media only screen and (max-width: $breakpoint)
     @content
+
+@keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes fade-up-and-in
+  0%
+    opacity: 0
+    transform: translateY(2em)
+  50%
+    opacity: 0
+    transform: translateY(2em)
+  70%
+    opacity: 0.70
+    transform: translateY(-0.4em)
+  100%
+    opacity: 1
+    transform: translateY(0)
