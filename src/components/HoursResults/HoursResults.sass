@@ -1,0 +1,75 @@
+@import 'styles/shared.sass'
+
+.HoursResults
+  animation-name: fade-in
+  animation-timing-function: ease-in
+  animation-duration: 0.5s
+  align-items: stretch
+  background: linear-gradient(141deg, $blue 50%, $light-green 60%)
+  box-sizing: border-box
+  display: flex
+  flex: 1
+  flex-direction: column
+  +from($breakpoint-tablet)
+    flex-direction: row
+    flex-wrap: wrap
+
+.HoursResults__tile
+  box-sizing: border-box
+  display: flex
+  flex-basis: 51%
+  flex: 1
+  +from($breakpoint-tablet)
+    flex-basis: 50%
+
+.HoursResults__text-tile
+  align-items: center
+  display: flex
+  justify-content: center
+
+.HoursResults__card
+  align-items: center
+  background-color: rgba(255, 255, 255, 0.65)
+  box-shadow: 2px 2px 20px -2px lightgray
+  display: flex
+  flex-direction: column
+  height: 90%
+  justify-content: center
+  width: 90%
+
+.HoursResults__headline
+  animation-duration: 750ms
+  animation-name: fade-up-and-in
+  animation-timing-function: ease-out
+  font-size: 1.5em
+  margin-bottom: 0.5em
+  +from($breakpoint-tablet)
+    font-size: 2em
+    margin-bottom: 0
+
+.HoursResults__headline--slow-fade-in
+  animation-duration: 1.75s
+  animation-name: fade-up-and-in
+  animation-timing-function: ease-out
+
+.HoursResults__headline-hour-number
+  color: $pink
+  font-weight: bold
+
+.HoursResults__subheadline
+  animation-duration: 1.75s
+  animation-name: fade-up-and-in
+  animation-timing-function: ease-out
+  +from($breakpoint-tablet)
+    display: none
+
+.HoursResults__tile--hidden-on-mobile
+  display: none
+  +from($breakpoint-tablet)
+    display: flex
+
+.HoursResults__image
+  box-sizing: border-box
+  max-height: 100%
+  max-width: 100%
+  object-fit: cover

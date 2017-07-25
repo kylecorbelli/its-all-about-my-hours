@@ -1,11 +1,28 @@
 import * as React from 'react'
 import './HoursResults.css'
-import { Link } from 'react-router-dom'
+
+const cakePopsImagePath: string = require('../../images/cake-pops.jpeg')
+const iceCreamSandwichImagePath: string = require('../../images/ice-cream-sandwich.jpg')
 
 const HoursResults = (): JSX.Element => (
   <div className="HoursResults">
-    Hours Results
-    <Link to="/">Recalculate</Link>
+    <div className="HoursResults__tile HoursResults__text-tile">
+      <div className="HoursResults__card">
+        <span className="HoursResults__headline">You Have <span className="HoursResults__headline-hour-number">600</span> Hours!</span>
+        <span className="HoursResults__subheadline">Only <span className="HoursResults__headline-hour-number">1,400</span> More to Go!</span>
+      </div>
+    </div>
+    <div className="HoursResults__tile">
+      <img className="HoursResults__image" src={cakePopsImagePath} alt="cake-pops"/>
+    </div>
+    <div className="HoursResults__tile HoursResults__tile--hidden-on-mobile">
+      <img className="HoursResults__image" src={iceCreamSandwichImagePath} alt="ice-cream-sandwich"/>
+    </div>
+    <div className="HoursResults__tile HoursResults__tile--hidden-on-mobile HoursResults__text-tile">
+      <div className="HoursResults__card">
+        <span className="HoursResults__headline HoursResults__headline--slow-fade-in">Only <span className="HoursResults__headline-hour-number">1,400</span> More to Go!</span>
+      </div>
+    </div>
   </div>
 )
 

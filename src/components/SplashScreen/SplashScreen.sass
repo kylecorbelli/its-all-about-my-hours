@@ -8,20 +8,6 @@
   100%
     transform: scale(1) rotate(360deg)
 
-@keyframes SplashScreen__headline-fade-up-and-in
-  0%
-    opacity: 0
-    transform: translateY(2em)
-  50%
-    opacity: 0
-    transform: translateY(2em)
-  70%
-    opacity: 0.70
-    transform: translateY(-0.4em)
-  100%
-    opacity: 1
-    transform: translateY(0)
-
 .SplashScreen
   align-items: center
   background-color: $pink
@@ -62,7 +48,7 @@
   text-align: center
 
 .SplashScreen__headline-first-half
-  animation: SplashScreen__headline-fade-up-and-in 1.6s
+  animation: fade-up-and-in 1.6s
 
 .SplashScreen__headline-second-half
-  animation: SplashScreen__headline-fade-up-and-in 2.2s
+  animation: fade-up-and-in 2.2s
