@@ -8,8 +8,16 @@ const HoursResults = (): JSX.Element => (
   <div className="HoursResults">
     <div className="HoursResults__tile HoursResults__text-tile">
       <div className="HoursResults__card">
-        <span className="HoursResults__headline">You Have <span className="HoursResults__headline-hour-number">600</span> Hours!</span>
-        <span className="HoursResults__subheadline">Only <span className="HoursResults__headline-hour-number">1,400</span> More to Go!</span>
+        <span className="HoursResults__headline">
+          You Have&nbsp;
+          <span className="HoursResults__headline-hour-number">600</span>
+          &nbsp;Hours!
+        </span>
+        <span className="HoursResults__subheadline">
+          Only&nbsp;
+          <span className="HoursResults__headline-hour-number">1,400</span>
+          &nbsp;More to Go!
+        </span>
       </div>
     </div>
     <div className="HoursResults__tile">
@@ -20,7 +28,11 @@ const HoursResults = (): JSX.Element => (
     </div>
     <div className="HoursResults__tile HoursResults__tile--hidden-on-mobile HoursResults__text-tile">
       <div className="HoursResults__card">
-        <span className="HoursResults__headline HoursResults__headline--slow-fade-in">Only <span className="HoursResults__headline-hour-number">1,400</span> More to Go!</span>
+        <span className="HoursResults__headline HoursResults__headline--slow-fade-in">
+          Only&nbsp;
+          <span className="HoursResults__headline-hour-number">1,400</span>
+          &nbsp;More to Go!
+        </span>
       </div>
     </div>
   </div>
