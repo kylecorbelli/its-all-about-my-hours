@@ -1,9 +1,16 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 import './HoursResults.css'
+import ImageCarousel, { AnimationDirection } from '../ImageCarousel'
 
 const cakePopsImagePath: string = require('../../images/cake-pops.jpeg')
 const iceCreamSandwichImagePath: string = require('../../images/ice-cream-sandwich.jpg')
+const donutsImagePath: string = require('../../images/donuts.jpeg')
+const iceCreamImagePath: string = require('../../images/ice-cream.jpeg')
+const cakeImagePath: string = require('../../images/cake.jpeg')
+const candyStoreImagePath: string = require('../../images/candy-store.jpeg')
+const mAndMsImagePath: string = require('../../images/m-and-ms.jpeg')
+const mintIceCreamImagePath: string = require('../../images/mint-ice-cream.jpeg')
 
 interface Props {}
 
@@ -68,10 +75,24 @@ export default class HoursResults extends React.Component<Props, State> {
           </div>
         </div>
         <div className={fadeInFromRightTileClasses}>
-          <img className="HoursResults__image" src={cakePopsImagePath} alt="cake-pops"/>
+          <ImageCarousel
+            animationDelayMilliseconds={0}
+            animationDirection={AnimationDirection.Forward}
+            image1Path={cakePopsImagePath}
+            image2Path={donutsImagePath}
+            image3Path={cakeImagePath}
+            image4Path={mintIceCreamImagePath}
+          />
         </div>
         <div className={fadeInFromLeftTileClasses}>
-          <img className="HoursResults__image" src={iceCreamSandwichImagePath} alt="ice-cream-sandwich"/>
+          <ImageCarousel
+            animationDelayMilliseconds={5680}
+            animationDirection={AnimationDirection.Reverse}
+            image1Path={iceCreamSandwichImagePath}
+            image2Path={iceCreamImagePath}
+            image3Path={mAndMsImagePath}
+            image4Path={candyStoreImagePath}
+          />
         </div>
         <div className="HoursResults__tile HoursResults__tile--hidden-on-mobile HoursResults__text-tile">
           <div className="HoursResults__card">
