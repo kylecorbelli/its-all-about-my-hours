@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as classNames from 'classnames'
+import * as classnames from 'classnames'
 import './SplashScreen.css'
 
 const clock: string = require('../../images/clock-svg.svg');
@@ -48,7 +48,7 @@ export default class SplashScreen extends React.Component<Props, State> {
       'SplashScreen--hidden': shouldComponentBeHidden,
     }
     return (
-      <div className={classNames('SplashScreen', splashScreenConditionalClasses)}>
+      <div className={classnames('SplashScreen', splashScreenConditionalClasses)}>
         <img src={clock} className="SplashScreen__clock-logo" alt="clock logo" />
         <div className="SplashScreen__headline">
           <h1 className="SplashScreen__headline-first-half">It’s All About</h1>
