@@ -21,6 +21,25 @@
   +from($breakpoint-tablet)
     flex-basis: 50%
 
+.HoursResults__tile-fade-from-left,
+.HoursResults__tile-fade-from-right
+  transition: opacity 500ms linear, transform 500ms linear
+
+.HoursResults__tile-fade-from-left--is-not-faded-in,
+.HoursResults__tile-fade-from-right--is-not-faded-in
+  opacity: 0
+
+.HoursResults__tile-fade-from-left--is-not-faded-in
+  transform: translateX(-100%)
+
+.HoursResults__tile-fade-from-right--is-not-faded-in
+  transform: translateX(100%)
+
+.HoursResults__tile-fade-from-left--is-faded-in,
+.HoursResults__tile-fade-from-right--is-faded-in
+  opacity: 1
+  transform: translateX(0)
+
 .HoursResults__text-tile
   align-items: center
   display: flex
