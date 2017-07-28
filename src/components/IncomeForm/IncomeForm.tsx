@@ -12,7 +12,7 @@ interface Props {
 interface State {
   readonly regularPay: string
   readonly overtimePay: string
-  readonly shouldFormBeFadedOut: boolean
+  readonly isFormFadedOut: boolean
 }
 
 type DOMInputNode = HTMLInputElement | null
@@ -21,7 +21,7 @@ export default class IncomeForm extends React.Component<Props, State> {
   public state = {
     regularPay: '',
     overtimePay: '',
-    shouldFormBeFadedOut: false,
+    isFormFadedOut: true,
   }
 
   private regularPayInput: DOMInputNode
@@ -31,24 +31,35 @@ export default class IncomeForm extends React.Component<Props, State> {
     this.onSubmitForm = this.onSubmitForm.bind(this)
     this.handleRegularPayInputChange = this.handleRegularPayInputChange.bind(this)
     this.handleOvertimePayInputChange = this.handleOvertimePayInputChange.bind(this)
+    this.fadeInForm = this.fadeInForm.bind(this)
   }
 
   public componentDidMount (): void {
-    if (this.regularPayInput) {
-      this.regularPayInput.focus()
-    }
+    setTimeout(this.fadeInForm, 0)
+    setTimeout(
+      () => {
+        if (this.regularPayInput && !this.isMobile()) {
+          this.regularPayInput.focus()
+        }
+      },
+      500
+    )
   }
 
   public render (): JSX.Element {
     const {
-      shouldFormBeFadedOut,
+      isFormFadedOut,
     } = this.state
-    const incomeFormConditionalClasses = {
-      'IncomeForm__form--faded-out': shouldFormBeFadedOut
-    }
+    const incomeFormClasses = classnames(
+      'IncomeForm__form',
+      {
+        'IncomeForm__form--is-faded-in': !isFormFadedOut,
+        'IncomeForm__form--is-faded-out': isFormFadedOut,
+      },
+    )
     return (
       <div className="IncomeForm">
-        <form className={classnames('IncomeForm__form', incomeFormConditionalClasses)} onSubmit={this.onSubmitForm}>
+        <form className={incomeFormClasses} onSubmit={this.onSubmitForm}>
           <p className="IncomeForm__form-headline">Calculate How Many Hours You’ve Accumulated:</p>
           <label>
             <div className="IncomeForm__input-group">
@@ -75,7 +86,7 @@ export default class IncomeForm extends React.Component<Props, State> {
           </label>
           <button className="IncomeForm__submit-button" type="submit">Calculate</button>
         </form>
-        <SplashScreen shouldComponentBeHidden={true} />
+        <SplashScreen shouldComponentBeHidden={false} />
       </div>
     )
   }
@@ -98,7 +109,7 @@ export default class IncomeForm extends React.Component<Props, State> {
       history,
     } = this.props
     this.setState({
-      shouldFormBeFadedOut: true,
+      isFormFadedOut: true,
     })
     setTimeout(
       () => {
@@ -106,5 +117,15 @@ export default class IncomeForm extends React.Component<Props, State> {
       },
       250
     )
+  }
+
+  private fadeInForm (): void {
+    this.setState({
+      isFormFadedOut: false,
+    })
+  }
+
+  private isMobile (): boolean {
+    return !!window.navigator.userAgent.toLowerCase().match(/iphone|android/)
   }
 }

@@ -30,7 +30,16 @@
   max-width: 400px
   min-height: 300px
   padding: 20px
+  transition: opacity 250ms linear, transform 250ms linear
   width: 100%
+
+.IncomeForm__form--is-faded-in
+  opacity: 1
+  transform: translateY(0)
+
+.IncomeForm__form--is-faded-out
+  opacity: 0
+  transform: translateY(200%)
 
 .IncomeForm__form--faded-out
   animation-duration: 0.25s
