@@ -12,7 +12,7 @@ interface Props {
 interface State {
   readonly regularPay: string
   readonly overtimePay: string
-  readonly isFormFadedOut: boolean
+  readonly isFormFadedIn: boolean
 }
 
 type DOMInputNode = HTMLInputElement | null
@@ -21,7 +21,7 @@ export default class IncomeForm extends React.Component<Props, State> {
   public state = {
     regularPay: '',
     overtimePay: '',
-    isFormFadedOut: true,
+    isFormFadedIn: false,
   }
 
   private regularPayInput: DOMInputNode
@@ -32,6 +32,7 @@ export default class IncomeForm extends React.Component<Props, State> {
     this.handleRegularPayInputChange = this.handleRegularPayInputChange.bind(this)
     this.handleOvertimePayInputChange = this.handleOvertimePayInputChange.bind(this)
     this.fadeInForm = this.fadeInForm.bind(this)
+    this.fadeOutForm = this.fadeOutForm.bind(this)
   }
 
   public componentDidMount (): void {
@@ -48,13 +49,13 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   public render (): JSX.Element {
     const {
-      isFormFadedOut,
+      isFormFadedIn,
     } = this.state
     const incomeFormClasses = classnames(
       'IncomeForm__form',
       {
-        'IncomeForm__form--is-faded-in': !isFormFadedOut,
-        'IncomeForm__form--is-faded-out': isFormFadedOut,
+        'IncomeForm__form--is-faded-in': isFormFadedIn,
+        'IncomeForm__form--is-faded-out': !isFormFadedIn,
       },
     )
     return (
@@ -108,9 +109,7 @@ export default class IncomeForm extends React.Component<Props, State> {
     const {
       history,
     } = this.props
-    this.setState({
-      isFormFadedOut: true,
-    })
+    this.fadeOutForm()
     setTimeout(
       () => {
         history.push('/hours-results')
@@ -121,7 +120,13 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   private fadeInForm (): void {
     this.setState({
-      isFormFadedOut: false,
+      isFormFadedIn: true,
+    })
+  }
+
+  private fadeOutForm (): void {
+    this.setState({
+      isFormFadedIn: false,
     })
   }
 
