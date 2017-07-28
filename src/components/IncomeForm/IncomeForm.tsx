@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as classnames from 'classnames'
 import SplashScreen from '../SplashScreen'
 import './IncomeForm.css'
 
@@ -11,6 +12,7 @@ interface Props {
 interface State {
   readonly regularPay: string
   readonly overtimePay: string
+  readonly shouldFormBeFadedOut: boolean
 }
 
 type DOMInputNode = HTMLInputElement | null
@@ -19,6 +21,7 @@ export default class IncomeForm extends React.Component<Props, State> {
   public state = {
     regularPay: '',
     overtimePay: '',
+    shouldFormBeFadedOut: false,
   }
 
   private regularPayInput: DOMInputNode
@@ -37,9 +40,15 @@ export default class IncomeForm extends React.Component<Props, State> {
   }
 
   public render (): JSX.Element {
+    const {
+      shouldFormBeFadedOut,
+    } = this.state
+    const incomeFormConditionalClasses = {
+      'IncomeForm__form--faded-out': shouldFormBeFadedOut
+    }
     return (
       <div className="IncomeForm">
-        <form className="IncomeForm__form" onSubmit={this.onSubmitForm}>
+        <form className={classnames('IncomeForm__form', incomeFormConditionalClasses)} onSubmit={this.onSubmitForm}>
           <p className="IncomeForm__form-headline">Calculate How Many Hours You’ve Accumulated:</p>
           <label>
             <div className="IncomeForm__input-group">
@@ -88,6 +97,14 @@ export default class IncomeForm extends React.Component<Props, State> {
     const {
       history,
     } = this.props
-    history.push('/hours-results')
+    this.setState({
+      shouldFormBeFadedOut: true,
+    })
+    setTimeout(
+      () => {
+        history.push('/hours-results')
+      },
+      250
+    )
   }
 }

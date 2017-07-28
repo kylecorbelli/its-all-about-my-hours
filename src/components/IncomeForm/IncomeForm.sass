@@ -1,5 +1,13 @@
 @import 'styles/shared.sass'
 
+@keyframes fade-down-and-out
+  from
+    opacity: 1
+    transform: translateY(0)
+  to
+    opacity: 0
+    transform: translateY(200%)
+
 .IncomeForm
   align-items: center
   background: none
@@ -23,6 +31,11 @@
   min-height: 300px
   padding: 20px
   width: 100%
+
+.IncomeForm__form--faded-out
+  animation-duration: 0.25s
+  animation-name: fade-down-and-out
+  animation-timing-function: linear
 
 .IncomeForm__form-headline
   font-size: 1.5em
