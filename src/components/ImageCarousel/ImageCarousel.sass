@@ -1,0 +1,48 @@
+@keyframes cycle-carousel
+  0%
+    transform: translateX(0) translateY(0)
+  23%
+    transform: translateX(0) translateY(0)
+  25%
+    transform: translateX(-50%) translateY(0)
+  48%
+    transform: translateX(-50%) translateY(0)
+  50%
+    transform: translateX(-50%) translateY(-50%)
+  73%
+    transform: translateX(-50%) translateY(-50%)
+  75%
+    transform: translateX(0) translateY(-50%)
+  98%
+    transform: translateX(0) translateY(-50%)
+  100%
+    transform: translateX(0) translateY(0)
+
+.ImageCarousel
+  box-sizing: border-box
+  height: 100%
+  overflow: hidden
+  width: 100%
+
+.ImageCarousel__sliding-block
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  height: 200%
+  width: 200%
+
+.ImageCarousel__sliding-block--is-cycling-forward,
+.ImageCarousel__sliding-block--is-cycling-reverse
+  animation-duration: 16s
+  animation-iteration-count: infinite
+  animation-name: cycle-carousel
+  animation-timing-function: linear
+
+.ImageCarousel__sliding-block--is-cycling-reverse
+  animation-direction: reverse
+
+.ImageCarousel__image
+  box-sizing: border-box
+  height: 50%
+  object-fit: cover
+  width: 50%
