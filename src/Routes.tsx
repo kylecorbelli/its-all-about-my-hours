@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 import SiteHeader from './components/SiteHeader'
-import IncomeForm from './components/IncomeForm'
+import IncomeFormConnected from './containers/IncomeFormConnected'
 import HoursResults from './components/HoursResults'
 
 const Routes = (): JSX.Element => {
@@ -12,7 +12,7 @@ const Routes = (): JSX.Element => {
     <Router>
       <div className="Main">
         <SiteHeader />
-        <Route exact={true} path="/" component={IncomeForm} />
+        <Route exact={true} path="/" component={IncomeFormConnected} />
         <Route path="/hours-results" component={HoursResults} />
       </div>
     </Router>
