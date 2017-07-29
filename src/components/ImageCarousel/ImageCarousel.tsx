@@ -25,16 +25,20 @@ export default class ImageCarousel extends React.Component<Props, State> {
     isSlidingBlockCycling: false,
   }
 
-  public constructor(props: Props) {
-    super(props)
-    this.beginCyclingSlidingBlock = this.beginCyclingSlidingBlock.bind(this)
-  }
+  private beginCyclingSlidingBlockSetTimeoutId: number
 
   public componentDidMount (): void {
     const {
       animationDelayMilliseconds,
     } = this.props
-    setTimeout(this.beginCyclingSlidingBlock, animationDelayMilliseconds)
+    this.beginCyclingSlidingBlockSetTimeoutId = setTimeout(
+      this.beginCyclingSlidingBlock.bind(this),
+      animationDelayMilliseconds,
+    )
+  }
+
+  public componentWillUnmount (): void {
+    clearTimeout(this.beginCyclingSlidingBlockSetTimeoutId)
   }
 
   public render (): JSX.Element {
