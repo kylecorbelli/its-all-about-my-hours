@@ -3,7 +3,7 @@ import {
   ReduxState,
 } from '../redux/types'
 import {
-  setHasSplashScreenBeenShown,
+  updateHasSplashScreenBeenShown,
 } from '../redux/actions'
 
 import IncomeForm from '../components/IncomeForm'
@@ -14,5 +14,5 @@ const mapStateToProps = (state: ReduxState) => ({
 
 export default connect(
   mapStateToProps,
-  { setHasSplashScreenBeenShown },
+  { updateHasSplashScreenBeenShown },
 )(IncomeForm)

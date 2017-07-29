@@ -5,7 +5,7 @@ import './IncomeForm.css'
 
 interface Props {
   readonly hasSplashScreenBeenShown: boolean
-  readonly setHasSplashScreenBeenShown: () => void
+  readonly updateHasSplashScreenBeenShown: () => void
   readonly history: {
     push: (route: string) => void
   }
@@ -52,7 +52,7 @@ export default class IncomeForm extends React.Component<Props, State> {
   public render (): JSX.Element {
     const {
       hasSplashScreenBeenShown,
-      setHasSplashScreenBeenShown,
+      updateHasSplashScreenBeenShown,
     } = this.props
     const {
       isFormFadedIn,
@@ -95,7 +95,7 @@ export default class IncomeForm extends React.Component<Props, State> {
         </form>
         <SplashScreen
           shouldComponentBeHidden={hasSplashScreenBeenShown}
-          setHasSplashScreenBeenShown={setHasSplashScreenBeenShown}
+          updateHasSplashScreenBeenShown={updateHasSplashScreenBeenShown}
         />
       </div>
     )
