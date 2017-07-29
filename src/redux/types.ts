@@ -4,22 +4,15 @@ export interface ReduxState {
   readonly hasSplashScreenBeenShown: boolean
 }
 
-export type ReduxActionTypesEnum = 'SET_SPLASH_SCREEN_HAS_BEEN_SHOWN'
-  | 'CALCULATE_HOURS_WORKED----CHANGE_THIS_OBVIOUSLY'
-  | 'CALCULATE_EXPECTED_FINISH_DATE----CHANGE_THIS_OBVIOUSLY'
+export type UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN = 'UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN'
+export const UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN: UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN
+  = 'UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN'
 
-export namespace ReduxActionTypes  {
-  export const SET_SPLASH_SCREEN_HAS_BEEN_SHOWN: ReduxActionTypesEnum = 'SET_SPLASH_SCREEN_HAS_BEEN_SHOWN'
-}
-
-export interface BaseReduxAction {
-  readonly type: ReduxActionTypesEnum
-}
-
-export interface SetSplashScreenHasBeenShownAction extends BaseReduxAction  {
+export interface UpdateSplashScreenHasBeenShownAction {
+  readonly type: UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN
   readonly payload: {
     readonly hasSplashScreenBeenShown: boolean
   }
 }
 
-export type ReduxAction = SetSplashScreenHasBeenShownAction
+export type ReduxAction = UpdateSplashScreenHasBeenShownAction

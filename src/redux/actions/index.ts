@@ -1,10 +1,12 @@
 import {
-  ReduxActionTypes,
-  SetSplashScreenHasBeenShownAction,
+  UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN,
+  UpdateSplashScreenHasBeenShownAction,
 } from '../types'
 
-export const setHasSplashScreenBeenShown = (hasSplashScreenBeenShown: boolean): SetSplashScreenHasBeenShownAction => ({
-  type: ReduxActionTypes.SET_SPLASH_SCREEN_HAS_BEEN_SHOWN,
+export const updateHasSplashScreenBeenShown = (
+  hasSplashScreenBeenShown: boolean
+): UpdateSplashScreenHasBeenShownAction => ({
+  type: UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN,
   payload: {
     hasSplashScreenBeenShown,
   },
