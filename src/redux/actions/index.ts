@@ -1,12 +1,12 @@
 import {
-  UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN,
-  UpdateSplashScreenHasBeenShownAction,
+  UPDATE_HAS_SPLASH_SCREEN_BEEN_SHOWN,
+  UpdateHasSplashScreenBeenShownAction,
 } from '../types'
 
 export const updateHasSplashScreenBeenShown = (
   hasSplashScreenBeenShown: boolean
-): UpdateSplashScreenHasBeenShownAction => ({
-  type: UPDATE_SPLASH_SCREEN_HAS_BEEN_SHOWN,
+): UpdateHasSplashScreenBeenShownAction => ({
+  type: UPDATE_HAS_SPLASH_SCREEN_BEEN_SHOWN,
   payload: {
     hasSplashScreenBeenShown,
   },
