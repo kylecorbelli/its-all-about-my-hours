@@ -25,15 +25,17 @@ export default class HoursResults extends React.Component<Props, State> {
     isFadeInFromRightTileFadedIn: false,
   }
 
-  public constructor (props: Props) {
-    super(props)
-    this.fadeInTileFromLeft = this.fadeInTileFromLeft.bind(this)
-    this.fadeInTileFromRight = this.fadeInTileFromRight.bind(this)
-  }
+  private fadeInTileFromLeftSetTimeoutId: number
+  private fadeInTileFromRightSetTimeoutId: number
 
   public componentDidMount (): void {
-    setTimeout(this.fadeInTileFromLeft, 0)
-    setTimeout(this.fadeInTileFromRight, 500)
+    this.fadeInTileFromLeftSetTimeoutId = setTimeout(this.fadeInTileFromLeft.bind(this), 0)
+    this.fadeInTileFromRightSetTimeoutId = setTimeout(this.fadeInTileFromRight.bind(this), 500)
+  }
+
+  public componentWillUnmount (): void {
+    clearTimeout(this.fadeInTileFromLeftSetTimeoutId)
+    clearTimeout(this.fadeInTileFromRightSetTimeoutId)
   }
 
   public render (): JSX.Element {
