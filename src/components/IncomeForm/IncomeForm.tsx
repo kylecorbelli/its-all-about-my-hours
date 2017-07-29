@@ -4,6 +4,8 @@ import SplashScreen from '../SplashScreen'
 import './IncomeForm.css'
 
 interface Props {
+  readonly hasSplashScreenBeenShown: boolean
+  readonly setHasSplashScreenBeenShown: () => void
   readonly history: {
     push: (route: string) => void
   }
@@ -49,6 +51,10 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   public render (): JSX.Element {
     const {
+      hasSplashScreenBeenShown,
+      setHasSplashScreenBeenShown,
+    } = this.props
+    const {
       isFormFadedIn,
     } = this.state
     const incomeFormClasses = classnames(
@@ -87,7 +93,10 @@ export default class IncomeForm extends React.Component<Props, State> {
           </label>
           <button className="IncomeForm__submit-button" type="submit">Calculate</button>
         </form>
-        <SplashScreen shouldComponentBeHidden={false} />
+        <SplashScreen
+          shouldComponentBeHidden={hasSplashScreenBeenShown}
+          setHasSplashScreenBeenShown={setHasSplashScreenBeenShown}
+        />
       </div>
     )
   }

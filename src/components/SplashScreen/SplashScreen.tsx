@@ -6,6 +6,7 @@ const clock: string = require('../../images/clock-svg.svg');
 
 interface Props {
   readonly shouldComponentBeHidden: boolean
+  readonly setHasSplashScreenBeenShown: (hasSplashScreenBeenShown: boolean) => void
 }
 
 interface State {
@@ -29,6 +30,10 @@ export default class SplashScreen extends React.Component<Props, State> {
   }
 
   public componentDidMount (): void {
+    const {
+      setHasSplashScreenBeenShown,
+    } = this.props
+    setHasSplashScreenBeenShown(true)
     this.fadeOutComponentSetTimeoutId = setTimeout(this.fadeOutComponent.bind(this), 3500)
     this.hideComponentTimeoutId = setTimeout(this.hideComponent.bind(this), 3900)
   }
