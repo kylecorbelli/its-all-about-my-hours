@@ -10,8 +10,11 @@ interface Props {
     grossRegularTimePay: number,
     grossOvertimePay: number
   ) => void
+  readonly updateHasCompletedIncomeForm: (
+    hasCompletedIncomeForm: boolean
+  ) => void
   readonly history: {
-    push: (route: string) => void
+    readonly push: (route: string) => void
   }
 }
 
@@ -122,12 +125,14 @@ export default class IncomeForm extends React.Component<Props, State> {
     const {
       history,
       updateTotalHoursWorked,
+      updateHasCompletedIncomeForm,
     } = this.props
     const {
       grossRegularTimePay,
       grossOvertimePay,
     } = this.state
     updateTotalHoursWorked(parseFloat(grossRegularTimePay), parseFloat(grossOvertimePay))
+    updateHasCompletedIncomeForm(true)
     this.fadeOutForm()
     setTimeout(
       () => {

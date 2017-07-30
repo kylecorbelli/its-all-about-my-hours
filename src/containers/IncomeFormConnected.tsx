@@ -5,6 +5,7 @@ import {
 import {
   updateHasSplashScreenBeenShown,
   updateTotalHoursWorked,
+  updateHasCompletedIncomeForm,
 } from '../redux/actions'
 
 import IncomeForm from '../components/IncomeForm'
@@ -18,5 +19,6 @@ export default connect(
   {
     updateHasSplashScreenBeenShown,
     updateTotalHoursWorked,
+    updateHasCompletedIncomeForm,
   },
 )(IncomeForm)
