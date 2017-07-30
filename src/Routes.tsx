@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import SiteHeader from './components/SiteHeader'
 import IncomeFormConnected from './containers/IncomeFormConnected'
-import HoursResults from './components/HoursResults'
+import HoursResultsConnected from './containers/HoursResultsConnected'
 
 const Routes = (): JSX.Element => {
   return (
@@ -13,7 +13,7 @@ const Routes = (): JSX.Element => {
       <div className="Main">
         <SiteHeader />
         <Route exact={true} path="/" component={IncomeFormConnected} />
-        <Route path="/hours-results" component={HoursResults} />
+        <Route path="/hours-results" component={HoursResultsConnected} />
       </div>
     </Router>
   )

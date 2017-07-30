@@ -6,14 +6,18 @@ import './IncomeForm.css'
 interface Props {
   readonly hasSplashScreenBeenShown: boolean
   readonly updateHasSplashScreenBeenShown: () => void
+  readonly updateTotalHoursWorked: (
+    grossRegularTimePay: number,
+    grossOvertimePay: number
+  ) => void
   readonly history: {
     push: (route: string) => void
   }
 }
 
 interface State {
-  readonly regularPay: string
-  readonly overtimePay: string
+  readonly grossRegularTimePay: string
+  readonly grossOvertimePay: string
   readonly isFormFadedIn: boolean
 }
 
@@ -21,12 +25,12 @@ type DOMInputNode = HTMLInputElement | null
 
 export default class IncomeForm extends React.Component<Props, State> {
   public state = {
-    regularPay: '',
-    overtimePay: '',
+    grossRegularTimePay: '',
+    grossOvertimePay: '',
     isFormFadedIn: false,
   }
 
-  private regularPayInput: DOMInputNode
+  private grossRegularTimePayInput: DOMInputNode
 
   public constructor (props: Props) {
     super(props)
@@ -41,8 +45,8 @@ export default class IncomeForm extends React.Component<Props, State> {
     setTimeout(this.fadeInForm, 0)
     setTimeout(
       () => {
-        if (this.regularPayInput && !this.isMobile()) {
-          this.regularPayInput.focus()
+        if (this.grossRegularTimePayInput && !this.isMobile()) {
+          this.grossRegularTimePayInput.focus()
         }
       },
       500
@@ -75,7 +79,7 @@ export default class IncomeForm extends React.Component<Props, State> {
                 className="IncomeForm__text-input"
                 type="number"
                 onChange={this.handleRegularPayInputChange}
-                ref={element => this.regularPayInput = element}
+                ref={element => this.grossRegularTimePayInput = element}
                 placeholder="Gross regular-time pay"
               />
             </div>
@@ -103,13 +107,13 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   private handleRegularPayInputChange (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
-      regularPay: event.currentTarget.value,
+      grossRegularTimePay: event.currentTarget.value,
     })
   }
 
   private handleOvertimePayInputChange (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
-      overtimePay: event.currentTarget.value,
+      grossOvertimePay: event.currentTarget.value,
     })
   }
 
@@ -117,7 +121,13 @@ export default class IncomeForm extends React.Component<Props, State> {
     event.preventDefault()
     const {
       history,
+      updateTotalHoursWorked,
     } = this.props
+    const {
+      grossRegularTimePay,
+      grossOvertimePay,
+    } = this.state
+    updateTotalHoursWorked(parseFloat(grossRegularTimePay), parseFloat(grossOvertimePay))
     this.fadeOutForm()
     setTimeout(
       () => {

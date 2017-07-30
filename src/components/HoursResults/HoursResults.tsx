@@ -2,6 +2,8 @@ import * as React from 'react'
 import * as classnames from 'classnames'
 import './HoursResults.css'
 import ImageCarousel, { AnimationDirection } from '../ImageCarousel'
+import { prettyNumber } from '../../services/text-formatting'
+import { calculateTotalHoursRemaining } from '../../services/hours-calculations'
 
 const cakePopsImagePath: string = require('../../images/cake-pops.jpeg')
 const iceCreamSandwichImagePath: string = require('../../images/ice-cream-sandwich.jpg')
@@ -12,7 +14,9 @@ const candyStoreImagePath: string = require('../../images/candy-store.jpeg')
 const mAndMsImagePath: string = require('../../images/m-and-ms.jpeg')
 const mintIceCreamImagePath: string = require('../../images/mint-ice-cream.jpeg')
 
-interface Props {}
+interface Props {
+  readonly totalHoursWorked: number
+}
 
 interface State {
   readonly isFadeInFromLeftTileFadedIn: boolean
@@ -40,9 +44,13 @@ export default class HoursResults extends React.Component<Props, State> {
 
   public render (): JSX.Element {
     const {
+      totalHoursWorked,
+    } = this.props
+    const {
       isFadeInFromLeftTileFadedIn,
       isFadeInFromRightTileFadedIn,
     } = this.state
+    const totalHoursRemaining = calculateTotalHoursRemaining(totalHoursWorked)
     const fadeInFromLeftTileClasses = classnames(
       'HoursResults__tile',
       'HoursResults__tile--hidden-on-mobile',
@@ -66,12 +74,12 @@ export default class HoursResults extends React.Component<Props, State> {
           <div className="HoursResults__card">
             <span className="HoursResults__headline">
               You Have&nbsp;
-              <span className="HoursResults__headline-hour-number">600</span>
+              <span className="HoursResults__headline-hour-number">{prettyNumber(totalHoursWorked)}</span>
               &nbsp;Hours!
             </span>
             <span className="HoursResults__subheadline">
               Only&nbsp;
-              <span className="HoursResults__headline-hour-number">1,400</span>
+              <span className="HoursResults__headline-hour-number">{prettyNumber(totalHoursRemaining)}</span>
               &nbsp;More to Go!
             </span>
           </div>
@@ -100,7 +108,7 @@ export default class HoursResults extends React.Component<Props, State> {
           <div className="HoursResults__card">
             <span className="HoursResults__headline HoursResults__headline--slow-fade-in">
               Only&nbsp;
-              <span className="HoursResults__headline-hour-number">1,400</span>
+              <span className="HoursResults__headline-hour-number">{prettyNumber(totalHoursRemaining)}</span>
               &nbsp;More to Go!
             </span>
           </div>
