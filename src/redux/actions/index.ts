@@ -1,8 +1,10 @@
 import {
   UPDATE_HAS_SPLASH_SCREEN_BEEN_SHOWN,
   UPDATE_TOTAL_HOURS_WORKED,
+  UPDATE_HAS_COMPLETED_INCOME_FORM,
   UpdateHasSplashScreenBeenShownAction,
   UpdateTotalHoursWorkedAction,
+  UpdateHasCompletedIncomeFormAction,
 } from '../types'
 
 export const updateHasSplashScreenBeenShown = (
@@ -22,5 +24,14 @@ export const updateTotalHoursWorked = (
   payload: {
     grossRegularTimePay,
     grossOvertimePay,
+  },
+})
+
+export const updateHasCompletedIncomeForm = (
+  hasCompletedIncomeForm: boolean,
+): UpdateHasCompletedIncomeFormAction => ({
+  type: UPDATE_HAS_COMPLETED_INCOME_FORM,
+  payload: {
+    hasCompletedIncomeForm,
   },
 })

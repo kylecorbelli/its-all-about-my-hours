@@ -16,6 +16,10 @@ const mintIceCreamImagePath: string = require('../../images/mint-ice-cream.jpeg'
 
 interface Props {
   readonly totalHoursWorked: number
+  readonly hasCompletedIncomeForm: boolean
+  readonly history: {
+    readonly push: (route: string) => void
+  }
 }
 
 interface State {
@@ -31,6 +35,16 @@ export default class HoursResults extends React.Component<Props, State> {
 
   private fadeInTileFromLeftSetTimeoutId: number
   private fadeInTileFromRightSetTimeoutId: number
+
+  public componentWillMount (): void {
+    const {
+      hasCompletedIncomeForm,
+      history,
+    } = this.props
+    if (!hasCompletedIncomeForm) {
+      history.push('/')
+    }
+  }
 
   public componentDidMount (): void {
     this.fadeInTileFromLeftSetTimeoutId = setTimeout(this.fadeInTileFromLeft.bind(this), 0)
