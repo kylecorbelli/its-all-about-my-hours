@@ -94,7 +94,7 @@ export default class IncomeForm extends React.Component<Props, State> {
           <button className="IncomeForm__submit-button" type="submit">Calculate</button>
         </form>
         <SplashScreen
-          shouldComponentBeHidden={hasSplashScreenBeenShown}
+          hasSplashScreenBeenShown={hasSplashScreenBeenShown}
           updateHasSplashScreenBeenShown={updateHasSplashScreenBeenShown}
         />
       </div>
