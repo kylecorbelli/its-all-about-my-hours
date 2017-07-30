@@ -25,8 +25,12 @@ describe('hoursCalculations', () => {
   })
 
   describe('calculateTotalHoursRemaining', () => {
-    it('calculates the total number of hours remaining given gross regular time pay and gross overtime pay', () => {
-      expect(calculateTotalHoursRemaining(8765, 654.32)).toBe(1386.5857777777778)
+    it('calculates the total number of hours remaining given the total number of hours worked so far', () => {
+      expect(calculateTotalHoursRemaining(1687.54)).toBe(312.46000000000004)
+    })
+
+    it('returns 0 when the number of hours worked so far exceeds the target hours', () => {
+      expect(calculateTotalHoursRemaining(2345)).toBe(0)
     })
   })
 })

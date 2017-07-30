@@ -1,4 +1,4 @@
-const TARGET_HOURS = 2000
+export const TARGET_HOURS = 2000
 const HOURLY_REGULAR_TIME_RATE = 15
 const OVERTIME_RATE = HOURLY_REGULAR_TIME_RATE * 1.5
 
@@ -17,6 +17,5 @@ export const calculateTotalHoursWorked = (
              calculateOvertimeHoursWorked(grossOvertimePay)
 
 export const calculateTotalHoursRemaining = (
-  grossRegularTimePay: number,
-  grossOvertimePay: number,
-): number => TARGET_HOURS - calculateTotalHoursWorked(grossRegularTimePay, grossOvertimePay)
+  totalHoursWorked: number,
+): number => Math.max(TARGET_HOURS - totalHoursWorked, 0)
