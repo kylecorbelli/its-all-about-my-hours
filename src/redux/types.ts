@@ -20,8 +20,8 @@ export interface UpdateHasSplashScreenBeenShownAction {
 export interface UpdateTotalHoursWorkedAction {
   readonly type: UPDATE_TOTAL_HOURS_WORKED
   readonly payload: {
-    grossRegularTimePay: number
-    grossOvertimePay: number
+    readonly grossRegularTimePay: number
+    readonly grossOvertimePay: number
   }
 }
 

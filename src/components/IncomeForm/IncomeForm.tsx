@@ -21,7 +21,7 @@ interface State {
   readonly isFormFadedIn: boolean
 }
 
-type DOMInputNode = HTMLInputElement | null
+type DOMInputElement = HTMLInputElement | null
 
 export default class IncomeForm extends React.Component<Props, State> {
   public state = {
@@ -30,7 +30,7 @@ export default class IncomeForm extends React.Component<Props, State> {
     isFormFadedIn: false,
   }
 
-  private grossRegularTimePayInput: DOMInputNode
+  private grossRegularTimePayInput: DOMInputElement
 
   public constructor (props: Props) {
     super(props)
