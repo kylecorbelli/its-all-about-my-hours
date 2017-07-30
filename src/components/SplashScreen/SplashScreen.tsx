@@ -5,13 +5,13 @@ import './SplashScreen.css'
 const clock: string = require('../../images/clock-svg.svg');
 
 interface Props {
-  readonly shouldComponentBeHidden: boolean
+  readonly hasSplashScreenBeenShown: boolean
   readonly updateHasSplashScreenBeenShown: (hasSplashScreenBeenShown: boolean) => void
 }
 
 interface State {
   readonly shouldComponentBeFadedOut: boolean
-  readonly shouldComponentBeHidden: boolean
+  readonly hasSplashScreenBeenShown: boolean
 }
 
 export default class SplashScreen extends React.Component<Props, State> {
@@ -21,20 +21,20 @@ export default class SplashScreen extends React.Component<Props, State> {
   public constructor (props: Props) {
     super(props)
     const {
-      shouldComponentBeHidden,
+      hasSplashScreenBeenShown,
     } = this.props
     this.state = {
       shouldComponentBeFadedOut: false,
-      shouldComponentBeHidden,
+      hasSplashScreenBeenShown,
     }
   }
 
   public componentDidMount (): void {
     const {
-      shouldComponentBeHidden,
+      hasSplashScreenBeenShown,
       updateHasSplashScreenBeenShown,
     } = this.props
-    if (!shouldComponentBeHidden) {
+    if (!hasSplashScreenBeenShown) {
       updateHasSplashScreenBeenShown(true)
     }
     this.fadeOutComponentSetTimeoutId = setTimeout(this.fadeOutComponent.bind(this), 3500)
@@ -49,11 +49,11 @@ export default class SplashScreen extends React.Component<Props, State> {
   public render (): JSX.Element {
     const {
       shouldComponentBeFadedOut,
-      shouldComponentBeHidden,
+      hasSplashScreenBeenShown,
     } = this.state
     const splashScreenConditionalClasses = {
       'SplashScreen--faded-out': shouldComponentBeFadedOut,
-      'SplashScreen--hidden': shouldComponentBeHidden,
+      'SplashScreen--hidden': hasSplashScreenBeenShown,
     }
     return (
       <div className={classnames('SplashScreen', splashScreenConditionalClasses)}>
@@ -74,7 +74,7 @@ export default class SplashScreen extends React.Component<Props, State> {
 
   private hideComponent (): void {
     this.setState({
-      shouldComponentBeHidden: true,
+      hasSplashScreenBeenShown: true,
     })
   }
 }
