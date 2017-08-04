@@ -35,17 +35,17 @@
 
 .IncomeForm__form-headline
   font-size: 1.5em
-  margin: -1em 0
+  margin: 0
   text-align: center
 
-.IncomeForm__input-group
+.IncomeForm__input-group-input
   align-items: center
   cursor: pointer
   display: flex
 
 .IncomeForm__dollar-symbol
   text-align: left
-  width: 30px
+  width: 1.5em
 
 .IncomeForm__text-input
   background: none
@@ -60,29 +60,56 @@
   outline: none
   padding: 15px 0
   transition: border-color 0.4s ease-out
-  &::placeholder
-    transition: color 0.4s ease
   &:focus
     border-color: $pink
     &::placeholder
       color: $pink
       transition: color 0.4s ease
+  &--has-error
+    border-color: red
+    &:focus
+      border-color: red
+  &::placeholder
+    transition: color 0.4s ease
+
+.IncomeForm__error-message
+  color: red
+  margin-left: 1.5em
+  transition: opacity 0.4s ease, visibility 0.4s ease
+
+.IncomeForm__error-message--visible
+  opacity: 1
+  visibility: visible
+
+.IncomeForm__error-message--hidden
+  opacity: 0
+  visibility: hidden
 
 .IncomeForm__submit-button
-  background: none
+  background-color: $pink
   border: 1px solid $pink
   box-sizing: border-box
-  color: $pink
+  color: white
   cursor: pointer
   font-family: inherit
   font-size: 1em
   outline: none
   padding: 20px
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease
-  &:focus,
   &:hover
-    background-color: $pink
-    color: white
+    background-color: white
+    color: $pink
   &:active
     background-color: $dark-pink
     border-color: $dark-pink
+    color: white
+  &--invalid-form
+    background-color: $light-pink
+    border-color: $light-pink
+    color: $pink
+    cursor: not-allowed
+    &:hover,
+    &:focus
+      background-color: $light-pink
+      border-color: $light-pink
+      color: $pink
