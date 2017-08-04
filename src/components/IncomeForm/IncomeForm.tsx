@@ -65,9 +65,6 @@ export default class IncomeForm extends React.Component<Props, State> {
     this.handleOvertimePayInputChange = this.handleOvertimePayInputChange.bind(this)
     this.fadeInForm = this.fadeInForm.bind(this)
     this.fadeOutForm = this.fadeOutForm.bind(this)
-    // this.validateForm = this.validateForm.bind(this)
-    this.validateGrossRegularTimePay = this.validateGrossRegularTimePay.bind(this)
-    this.validateGrossOvertimePay = this.validateGrossOvertimePay.bind(this)
   }
 
   public componentDidMount (): void {
@@ -100,7 +97,7 @@ export default class IncomeForm extends React.Component<Props, State> {
         <form className={incomeFormClasses} onSubmit={this.onSubmitForm}>
           <p className="IncomeForm__form-headline">Calculate How Many Hours You’ve Accumulated:</p>
           <div className="IncomeForm__input-group">
-            <label className="IncomeForm__input-group-input">
+            <label className="IncomeForm__input-group-label">
               <div className="IncomeForm__dollar-symbol">&#36;</div>
               <input
                 className={grossRegularTimePayInputClasses}
@@ -113,7 +110,7 @@ export default class IncomeForm extends React.Component<Props, State> {
             <p className={grossRegularTimePayErrorClasses}>Please enter a numeric value</p>
           </div>
           <div className="IncomeForm__input-group">
-            <label className="IncomeForm__input-group-input">
+            <label className="IncomeForm__input-group-label">
               <div className="IncomeForm__dollar-symbol">&#36;</div>
               <input
                 className={grossOvertimePayInputClasses}
@@ -153,13 +150,13 @@ export default class IncomeForm extends React.Component<Props, State> {
       grossRegularTimePayInputClasses: classnames(
         'IncomeForm__text-input',
         {
-          'IncomeForm__text-input--has-error': grossRegularTimePayHasError,
+          'IncomeForm__text-input--has-error': grossRegularTimePayHasError && hasFormBeenSubmitted,
         },
       ),
       grossOvertimePayInputClasses: classnames(
         'IncomeForm__text-input',
         {
-          'IncomeForm__text-input--has-error': grossOvertimePayHasError,
+          'IncomeForm__text-input--has-error': grossOvertimePayHasError && hasFormBeenSubmitted,
         },
       ),
       submitButtonClasses: classnames(
@@ -172,14 +169,12 @@ export default class IncomeForm extends React.Component<Props, State> {
         'IncomeForm__error-message',
         {
           'IncomeForm__error-message--visible': grossRegularTimePayHasError && hasFormBeenSubmitted,
-          'IncomeForm__error-message--hidden': !grossRegularTimePayHasError,
         },
       ),
       grossOvertimePayErrorClasses: classnames(
         'IncomeForm__error-message',
         {
           'IncomeForm__error-message--visible': grossOvertimePayHasError && hasFormBeenSubmitted,
-          'IncomeForm__error-message--hidden': !grossOvertimePayHasError,
         },
       )
     }
