@@ -20,17 +20,40 @@ interface Props {
 
 interface State {
   readonly grossRegularTimePay: string
+  readonly grossRegularTimePayHasError: boolean
   readonly grossOvertimePay: string
+  readonly grossOvertimePayHasError: boolean
+  readonly isFormValid: boolean
   readonly isFormFadedIn: boolean
+  readonly hasFormBeenSubmitted: boolean
 }
 
 type DOMInputElement = HTMLInputElement | null
 
+interface CurrentFormValidationStatus {
+  readonly grossRegularTimePayHasError: boolean
+  readonly grossOvertimePayHasError: boolean
+  readonly isFormValid: boolean
+}
+
+interface ClassNames {
+  readonly incomeFormClasses: string
+  readonly grossRegularTimePayInputClasses: string
+  readonly grossOvertimePayInputClasses: string
+  readonly submitButtonClasses: string
+  readonly grossRegularTimePayErrorClasses: string
+  readonly grossOvertimePayErrorClasses: string
+}
+
 export default class IncomeForm extends React.Component<Props, State> {
   public state = {
     grossRegularTimePay: '',
+    grossRegularTimePayHasError: false,
     grossOvertimePay: '',
+    grossOvertimePayHasError: false,
+    isFormValid: false,
     isFormFadedIn: false,
+    hasFormBeenSubmitted: false,
   }
 
   private grossRegularTimePayInput: DOMInputElement
@@ -42,6 +65,9 @@ export default class IncomeForm extends React.Component<Props, State> {
     this.handleOvertimePayInputChange = this.handleOvertimePayInputChange.bind(this)
     this.fadeInForm = this.fadeInForm.bind(this)
     this.fadeOutForm = this.fadeOutForm.bind(this)
+    // this.validateForm = this.validateForm.bind(this)
+    this.validateGrossRegularTimePay = this.validateGrossRegularTimePay.bind(this)
+    this.validateGrossOvertimePay = this.validateGrossOvertimePay.bind(this)
   }
 
   public componentDidMount (): void {
@@ -58,66 +84,119 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   public render (): JSX.Element {
     const {
-      hasSplashScreenBeenShown,
+      // hasSplashScreenBeenShown,
       updateHasSplashScreenBeenShown,
     } = this.props
     const {
-      isFormFadedIn,
-    } = this.state
-    const incomeFormClasses = classnames(
-      'IncomeForm__form',
-      {
-        'IncomeForm__form--is-faded-in': isFormFadedIn,
-        'IncomeForm__form--is-faded-out': !isFormFadedIn,
-      },
-    )
+      incomeFormClasses,
+      grossRegularTimePayInputClasses,
+      grossOvertimePayInputClasses,
+      submitButtonClasses,
+      grossRegularTimePayErrorClasses,
+      grossOvertimePayErrorClasses,
+    }: ClassNames = this.getClassNames()
     return (
       <div className="IncomeForm">
         <form className={incomeFormClasses} onSubmit={this.onSubmitForm}>
           <p className="IncomeForm__form-headline">Calculate How Many Hours You’ve Accumulated:</p>
-          <label>
-            <div className="IncomeForm__input-group">
+          <div className="IncomeForm__input-group">
+            <label className="IncomeForm__input-group-input">
               <div className="IncomeForm__dollar-symbol">&#36;</div>
               <input
-                className="IncomeForm__text-input"
+                className={grossRegularTimePayInputClasses}
                 type="number"
                 onChange={this.handleRegularPayInputChange}
                 ref={element => this.grossRegularTimePayInput = element}
                 placeholder="Gross regular-time pay"
               />
-            </div>
-          </label>
-          <label>
-            <div className="IncomeForm__input-group">
+            </label>
+            <p className={grossRegularTimePayErrorClasses}>Please enter a numeric value</p>
+          </div>
+          <div className="IncomeForm__input-group">
+            <label className="IncomeForm__input-group-input">
               <div className="IncomeForm__dollar-symbol">&#36;</div>
               <input
-                className="IncomeForm__text-input"
+                className={grossOvertimePayInputClasses}
                 type="number"
                 onChange={this.handleOvertimePayInputChange}
                 placeholder="Gross overtime pay"
               />
-            </div>
-          </label>
-          <button className="IncomeForm__submit-button" type="submit">Calculate</button>
+            </label>
+            <p className={grossOvertimePayErrorClasses}>Please enter a numeric value</p>
+          </div>
+          <button className={submitButtonClasses} type="submit">Calculate</button>
         </form>
         <SplashScreen
-          hasSplashScreenBeenShown={hasSplashScreenBeenShown}
+          hasSplashScreenBeenShown={true}
           updateHasSplashScreenBeenShown={updateHasSplashScreenBeenShown}
         />
       </div>
     )
   }
 
+  private getClassNames (): ClassNames {
+    const {
+      isFormFadedIn,
+      isFormValid,
+      grossRegularTimePayHasError,
+      grossOvertimePayHasError,
+      hasFormBeenSubmitted,
+    } = this.state
+    return {
+      incomeFormClasses: classnames(
+        'IncomeForm__form',
+        {
+          'IncomeForm__form--is-faded-in': isFormFadedIn,
+          'IncomeForm__form--is-faded-out': !isFormFadedIn,
+        },
+      ),
+      grossRegularTimePayInputClasses: classnames(
+        'IncomeForm__text-input',
+        {
+          'IncomeForm__text-input--has-error': grossRegularTimePayHasError,
+        },
+      ),
+      grossOvertimePayInputClasses: classnames(
+        'IncomeForm__text-input',
+        {
+          'IncomeForm__text-input--has-error': grossOvertimePayHasError,
+        },
+      ),
+      submitButtonClasses: classnames(
+        'IncomeForm__submit-button',
+        {
+          'IncomeForm__submit-button--invalid-form': !isFormValid,
+        },
+      ),
+      grossRegularTimePayErrorClasses: classnames(
+        'IncomeForm__error-message',
+        {
+          'IncomeForm__error-message--visible': grossRegularTimePayHasError && hasFormBeenSubmitted,
+          'IncomeForm__error-message--hidden': !grossRegularTimePayHasError,
+        },
+      ),
+      grossOvertimePayErrorClasses: classnames(
+        'IncomeForm__error-message',
+        {
+          'IncomeForm__error-message--visible': grossOvertimePayHasError && hasFormBeenSubmitted,
+          'IncomeForm__error-message--hidden': !grossOvertimePayHasError,
+        },
+      )
+    }
+  }
+
   private handleRegularPayInputChange (event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({
-      grossRegularTimePay: event.currentTarget.value,
-    })
+    this.setState(
+      { grossRegularTimePay: event.currentTarget.value },
+      this.validateGrossRegularTimePay,
+    )
   }
 
   private handleOvertimePayInputChange (event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({
-      grossOvertimePay: event.currentTarget.value,
-    })
+    this.setState(
+      { grossOvertimePay: event.currentTarget.value },
+      this.validateGrossOvertimePay,
+    )
   }
 
   private onSubmitForm (event: React.FormEvent<HTMLFormElement>): void {
@@ -131,6 +210,18 @@ export default class IncomeForm extends React.Component<Props, State> {
       grossRegularTimePay,
       grossOvertimePay,
     } = this.state
+    const {
+      grossRegularTimePayHasError,
+      grossOvertimePayHasError,
+      isFormValid,
+    } = this.getCurrentFormValidationStatus()
+    if (!isFormValid) {
+      return this.setState({
+        grossRegularTimePayHasError,
+        grossOvertimePayHasError,
+        hasFormBeenSubmitted: true,
+      })
+    }
     updateTotalHoursWorked(parseFloat(grossRegularTimePay), parseFloat(grossOvertimePay))
     updateHasCompletedIncomeForm(true)
     this.fadeOutForm()
@@ -156,5 +247,42 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   private isMobile (): boolean {
     return !!window.navigator.userAgent.toLowerCase().match(/iphone|android/)
+  }
+
+  private validateGrossRegularTimePay (): void {
+    const {
+      grossRegularTimePayHasError,
+      isFormValid,
+    } = this.getCurrentFormValidationStatus()
+    this.setState({
+      grossRegularTimePayHasError,
+      isFormValid,
+    })
+  }
+
+  private validateGrossOvertimePay (): void {
+    const {
+      grossOvertimePayHasError,
+      isFormValid,
+    } = this.getCurrentFormValidationStatus()
+    this.setState({
+      grossOvertimePayHasError,
+      isFormValid,
+    })
+  }
+
+  private getCurrentFormValidationStatus (): CurrentFormValidationStatus {
+    const {
+      grossRegularTimePay,
+      grossOvertimePay,
+    } = this.state
+    const grossRegularTimePayHasError: boolean = !Boolean(grossRegularTimePay)
+    const grossOvertimePayHasError: boolean = !Boolean(grossOvertimePay)
+    const isFormValid: boolean = !grossRegularTimePayHasError && !grossOvertimePayHasError
+    return {
+      grossRegularTimePayHasError,
+      grossOvertimePayHasError,
+      isFormValid,
+    }
   }
 }
