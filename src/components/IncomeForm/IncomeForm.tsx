@@ -85,7 +85,7 @@ export default class IncomeForm extends React.Component<Props, State> {
 
   public render (): JSX.Element {
     const {
-      // hasSplashScreenBeenShown,
+      hasSplashScreenBeenShown,
       updateHasSplashScreenBeenShown,
     } = this.props
     const {
@@ -134,7 +134,7 @@ export default class IncomeForm extends React.Component<Props, State> {
           <button className={submitButtonClasses} type="submit">Calculate</button>
         </form>
         <SplashScreen
-          hasSplashScreenBeenShown={true}
+          hasSplashScreenBeenShown={hasSplashScreenBeenShown}
           updateHasSplashScreenBeenShown={updateHasSplashScreenBeenShown}
         />
       </div>
