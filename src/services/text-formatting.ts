@@ -5,4 +5,4 @@ export const prettyNumber = (value: number): string => {
              .replace('.0', '')
 }
 
-export const stringifyOrBlankIfZero = (value: number): string => value > 0 ? String(value) : ''
+export const stringifyOrBlankIfZero = (value: number): string => value === 0 ? '' : String(value)
