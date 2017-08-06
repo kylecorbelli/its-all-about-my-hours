@@ -3,7 +3,10 @@ import * as classnames from 'classnames'
 import './HoursResults.css'
 import ImageCarousel, { AnimationDirection } from '../ImageCarousel'
 import { prettyNumber } from '../../services/text-formatting'
-import { calculateTotalHoursRemaining } from '../../services/hours-calculations'
+import {
+  calculateTotalHoursWorked,
+  calculateTotalHoursRemaining,
+} from '../../services/hours-calculations'
 
 const cakePopsImagePath: string = require('../../images/cake-pops.jpeg')
 const iceCreamSandwichImagePath: string = require('../../images/ice-cream-sandwich.jpg')
@@ -15,11 +18,12 @@ const mAndMsImagePath: string = require('../../images/m-and-ms.jpeg')
 const mintIceCreamImagePath: string = require('../../images/mint-ice-cream.jpeg')
 
 interface Props {
-  readonly totalHoursWorked: number
   readonly hasCompletedIncomeForm: boolean
   readonly history: {
     readonly push: (route: string) => void
   }
+  readonly grossRegularTimePay: number
+  readonly grossOvertimePay: number
 }
 
 interface State {
@@ -58,13 +62,15 @@ export default class HoursResults extends React.Component<Props, State> {
 
   public render (): JSX.Element {
     const {
-      totalHoursWorked,
+      grossRegularTimePay,
+      grossOvertimePay,
     } = this.props
+    const totalHoursWorked: number = calculateTotalHoursWorked(grossRegularTimePay, grossOvertimePay)
+    const totalHoursRemaining: number = calculateTotalHoursRemaining(grossRegularTimePay, grossOvertimePay)
     const {
       isFadeInFromLeftTileFadedIn,
       isFadeInFromRightTileFadedIn,
     } = this.state
-    const totalHoursRemaining = calculateTotalHoursRemaining(totalHoursWorked)
     const fadeInFromLeftTileClasses = classnames(
       'HoursResults__tile',
       'HoursResults__tile--hidden-on-mobile',

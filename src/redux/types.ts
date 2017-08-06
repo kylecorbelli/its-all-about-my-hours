@@ -1,6 +1,5 @@
 export interface ReduxState {
   readonly hasSplashScreenBeenShown: boolean
-  readonly totalHoursWorked: number
   readonly hasCompletedIncomeForm: boolean
   readonly grossRegularTimePay: number
   readonly grossOvertimePay: number
