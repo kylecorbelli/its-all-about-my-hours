@@ -3,10 +3,12 @@ import {
   UPDATE_TOTAL_HOURS_WORKED,
   UPDATE_HAS_COMPLETED_INCOME_FORM,
   UPDATE_GROSS_REGULARTIME_PAY,
+  UPDATE_GROSS_OVERTIME_PAY,
   UpdateHasSplashScreenBeenShownAction,
   UpdateTotalHoursWorkedAction,
   UpdateHasCompletedIncomeFormAction,
   UpdateGrossRegularTimePayAction,
+  UpdateGrossOvertimePayAction,
 } from '../types'
 
 export const updateHasSplashScreenBeenShown = (
@@ -42,5 +44,12 @@ export const updateGrossRegularTimePay = (grossRegularTimePay: number): UpdateGr
   type: UPDATE_GROSS_REGULARTIME_PAY,
   payload: {
     grossRegularTimePay,
+  },
+})
+
+export const updateGrossOvertimePay = (grossOvertimePay: number): UpdateGrossOvertimePayAction => ({
+  type: UPDATE_GROSS_OVERTIME_PAY,
+  payload: {
+    grossOvertimePay,
   },
 })

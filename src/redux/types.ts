@@ -3,6 +3,7 @@ export interface ReduxState {
   readonly totalHoursWorked: number
   readonly hasCompletedIncomeForm: boolean
   readonly grossRegularTimePay: number
+  readonly grossOvertimePay: number
 }
 
 export type UPDATE_HAS_SPLASH_SCREEN_BEEN_SHOWN = 'UPDATE_HAS_SPLASH_SCREEN_BEEN_SHOWN'
@@ -17,6 +18,9 @@ export const UPDATE_HAS_COMPLETED_INCOME_FORM: UPDATE_HAS_COMPLETED_INCOME_FORM 
 
 export type UPDATE_GROSS_REGULARTIME_PAY = 'UPDATE_GROSS_REGULARTIME_PAY'
 export const UPDATE_GROSS_REGULARTIME_PAY: UPDATE_GROSS_REGULARTIME_PAY = 'UPDATE_GROSS_REGULARTIME_PAY'
+
+export type UPDATE_GROSS_OVERTIME_PAY = 'UPDATE_GROSS_OVERTIME_PAY'
+export const UPDATE_GROSS_OVERTIME_PAY: UPDATE_GROSS_OVERTIME_PAY = 'UPDATE_GROSS_OVERTIME_PAY'
 
 export interface UpdateHasSplashScreenBeenShownAction {
   readonly type: UPDATE_HAS_SPLASH_SCREEN_BEEN_SHOWN
@@ -47,7 +51,15 @@ export interface UpdateGrossRegularTimePayAction {
   }
 }
 
+export interface UpdateGrossOvertimePayAction {
+  readonly type: UPDATE_GROSS_OVERTIME_PAY
+  readonly payload: {
+    readonly grossOvertimePay: number
+  }
+}
+
 export type ReduxAction = UpdateHasSplashScreenBeenShownAction
   | UpdateTotalHoursWorkedAction
   | UpdateHasCompletedIncomeFormAction
   | UpdateGrossRegularTimePayAction
+  | UpdateGrossOvertimePayAction

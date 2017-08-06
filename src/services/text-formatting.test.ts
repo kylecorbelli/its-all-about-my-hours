@@ -1,4 +1,7 @@
-import { prettyNumber } from './text-formatting'
+import {
+  prettyNumber,
+  stringifyOrBlankIfZero,
+} from './text-formatting'
 
 describe('text-formatting service', () => {
   describe('prettyNumber', () => {
@@ -28,6 +31,16 @@ describe('text-formatting service', () => {
       it('should round decimals up to the nearest integer', () => {
         expect(prettyNumber(5389143.50001)).toBe('5,389,144')
       })
+    })
+  })
+
+  describe('stringifyOrBlankIfZero', () => {
+    it('returns a stringified number if the input is not zero', () => {
+      expect(stringifyOrBlankIfZero(3.1)).toBe('3.1')
+    })
+
+    it('returns a blank string if the input is zero', () => {
+      expect(stringifyOrBlankIfZero(0)).toBe('')
     })
   })
 })

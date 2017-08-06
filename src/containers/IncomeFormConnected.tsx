@@ -6,12 +6,16 @@ import {
   updateHasSplashScreenBeenShown,
   updateTotalHoursWorked,
   updateHasCompletedIncomeForm,
+  updateGrossRegularTimePay,
+  updateGrossOvertimePay,
 } from '../redux/actions'
 
 import IncomeForm from '../components/IncomeForm'
 
 const mapStateToProps = (state: ReduxState) => ({
   hasSplashScreenBeenShown: state.hasSplashScreenBeenShown,
+  grossRegularTimePay: state.grossRegularTimePay,
+  grossOvertimePay: state.grossOvertimePay,
 })
 
 export default connect(
@@ -20,5 +24,7 @@ export default connect(
     updateHasSplashScreenBeenShown,
     updateTotalHoursWorked,
     updateHasCompletedIncomeForm,
+    updateGrossRegularTimePay,
+    updateGrossOvertimePay,
   },
 )(IncomeForm)
