@@ -5,6 +5,7 @@ const initialState: ReduxState = {
   totalHoursWorked: 0,
   hasCompletedIncomeForm: false,
   grossRegularTimePay: 0,
+  grossOvertimePay: 0,
 }
 
 export default initialState

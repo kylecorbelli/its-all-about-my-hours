@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as classnames from 'classnames'
 import SplashScreen from '../SplashScreen'
 import './IncomeForm.css'
+import { stringifyOrBlankIfZero } from '../../services/text-formatting'
 
 interface Props {
   readonly hasSplashScreenBeenShown: boolean
@@ -16,6 +17,10 @@ interface Props {
   readonly history: {
     readonly push: (route: string) => void
   }
+  readonly grossRegularTimePay: number
+  readonly grossOvertimePay: number
+  readonly updateGrossRegularTimePay: (grossRegularTimePay: number) => void,
+  readonly updateGrossOvertimePay: (grossOvertimePay: number) => void,
 }
 
 interface State {
@@ -46,20 +51,23 @@ interface ClassNames {
 }
 
 export default class IncomeForm extends React.Component<Props, State> {
-  public state = {
-    grossRegularTimePay: '',
-    grossRegularTimePayHasError: false,
-    grossOvertimePay: '',
-    grossOvertimePayHasError: false,
-    isFormValid: false,
-    isFormFadedIn: false,
-    hasFormBeenSubmitted: false,
-  }
-
   private grossRegularTimePayInput: DOMInputElement
 
   public constructor (props: Props) {
     super(props)
+    const {
+      grossRegularTimePay,
+      grossOvertimePay,
+    } = props
+    this.state = {
+      grossRegularTimePay: stringifyOrBlankIfZero(grossRegularTimePay),
+      grossRegularTimePayHasError: false,
+      grossOvertimePay: stringifyOrBlankIfZero(grossOvertimePay),
+      grossOvertimePayHasError: false,
+      isFormValid: Boolean(grossRegularTimePay) && Boolean(grossOvertimePay),
+      isFormFadedIn: false,
+      hasFormBeenSubmitted: false,
+    }
     this.onSubmitForm = this.onSubmitForm.bind(this)
     this.handleRegularPayInputChange = this.handleRegularPayInputChange.bind(this)
     this.handleOvertimePayInputChange = this.handleOvertimePayInputChange.bind(this)
@@ -85,6 +93,10 @@ export default class IncomeForm extends React.Component<Props, State> {
       updateHasSplashScreenBeenShown,
     } = this.props
     const {
+      grossRegularTimePay,
+      grossOvertimePay
+    } = this.state
+    const {
       incomeFormClasses,
       grossRegularTimePayInputClasses,
       grossOvertimePayInputClasses,
@@ -105,6 +117,7 @@ export default class IncomeForm extends React.Component<Props, State> {
                 onChange={this.handleRegularPayInputChange}
                 ref={element => this.grossRegularTimePayInput = element}
                 placeholder="Gross regular-time pay"
+                value={grossRegularTimePay}
               />
             </label>
             <p className={grossRegularTimePayErrorClasses}>Please enter a numeric value</p>
@@ -117,6 +130,7 @@ export default class IncomeForm extends React.Component<Props, State> {
                 type="number"
                 onChange={this.handleOvertimePayInputChange}
                 placeholder="Gross overtime pay"
+                value={grossOvertimePay}
               />
             </label>
             <p className={grossOvertimePayErrorClasses}>Please enter a numeric value</p>
@@ -200,6 +214,8 @@ export default class IncomeForm extends React.Component<Props, State> {
       history,
       updateTotalHoursWorked,
       updateHasCompletedIncomeForm,
+      updateGrossRegularTimePay,
+      updateGrossOvertimePay,
     } = this.props
     const {
       grossRegularTimePay,
@@ -218,6 +234,8 @@ export default class IncomeForm extends React.Component<Props, State> {
       })
     }
     updateTotalHoursWorked(parseFloat(grossRegularTimePay), parseFloat(grossOvertimePay))
+    updateGrossRegularTimePay(parseFloat(grossRegularTimePay))
+    updateGrossOvertimePay(parseFloat(grossOvertimePay))
     updateHasCompletedIncomeForm(true)
     this.fadeOutForm()
     setTimeout(
