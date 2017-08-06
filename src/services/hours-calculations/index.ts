@@ -1,6 +1,6 @@
-const TARGET_HOURS = 2000
-const HOURLY_REGULAR_TIME_RATE = 15
-const OVERTIME_RATE = HOURLY_REGULAR_TIME_RATE * 1.5
+const TARGET_HOURS: number = 2000
+const HOURLY_REGULAR_TIME_RATE: number = 15
+const OVERTIME_RATE: number = HOURLY_REGULAR_TIME_RATE * 1.5
 
 export const calculateRegularTimeHoursWorked = (
   grossRegularTimePay: number,
