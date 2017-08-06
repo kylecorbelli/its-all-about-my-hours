@@ -17,5 +17,9 @@ export const calculateTotalHoursWorked = (
              calculateOvertimeHoursWorked(grossOvertimePay)
 
 export const calculateTotalHoursRemaining = (
-  totalHoursWorked: number,
-): number => Math.max(TARGET_HOURS - totalHoursWorked, 0)
+  grossRegularTimePay: number,
+  grossOvertimePay: number,
+): number => {
+  const totalHoursWorked: number = calculateTotalHoursWorked(grossRegularTimePay, grossOvertimePay)
+  return Math.max(TARGET_HOURS - totalHoursWorked, 0)
+}

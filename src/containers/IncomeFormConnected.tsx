@@ -4,7 +4,6 @@ import {
 } from '../redux/types'
 import {
   updateHasSplashScreenBeenShown,
-  updateTotalHoursWorked,
   updateHasCompletedIncomeForm,
   updateGrossRegularTimePay,
   updateGrossOvertimePay,
@@ -22,7 +21,6 @@ export default connect(
   mapStateToProps,
   {
     updateHasSplashScreenBeenShown,
-    updateTotalHoursWorked,
     updateHasCompletedIncomeForm,
     updateGrossRegularTimePay,
     updateGrossOvertimePay,

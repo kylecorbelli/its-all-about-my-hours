@@ -3,8 +3,9 @@ import HoursResults from '../components/HoursResults'
 import { ReduxState } from '../redux/types'
 
 const mapStateToProps = (state: ReduxState) => ({
-  totalHoursWorked: state.totalHoursWorked,
   hasCompletedIncomeForm: state.hasCompletedIncomeForm,
+  grossRegularTimePay: state.grossRegularTimePay,
+  grossOvertimePay: state.grossOvertimePay,
 })
 
 export default connect(

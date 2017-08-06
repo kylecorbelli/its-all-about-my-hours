@@ -7,10 +7,6 @@ import { stringifyOrBlankIfZero } from '../../services/text-formatting'
 interface Props {
   readonly hasSplashScreenBeenShown: boolean
   readonly updateHasSplashScreenBeenShown: () => void
-  readonly updateTotalHoursWorked: (
-    grossRegularTimePay: number,
-    grossOvertimePay: number
-  ) => void
   readonly updateHasCompletedIncomeForm: (
     hasCompletedIncomeForm: boolean
   ) => void
@@ -212,7 +208,6 @@ export default class IncomeForm extends React.Component<Props, State> {
     event.preventDefault()
     const {
       history,
-      updateTotalHoursWorked,
       updateHasCompletedIncomeForm,
       updateGrossRegularTimePay,
       updateGrossOvertimePay,
@@ -233,7 +228,6 @@ export default class IncomeForm extends React.Component<Props, State> {
         hasFormBeenSubmitted: true,
       })
     }
-    updateTotalHoursWorked(parseFloat(grossRegularTimePay), parseFloat(grossOvertimePay))
     updateGrossRegularTimePay(parseFloat(grossRegularTimePay))
     updateGrossOvertimePay(parseFloat(grossOvertimePay))
     updateHasCompletedIncomeForm(true)
