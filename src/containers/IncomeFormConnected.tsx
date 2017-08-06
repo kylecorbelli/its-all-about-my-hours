@@ -11,11 +11,20 @@ import {
 
 import IncomeForm from '../components/IncomeForm'
 
-const mapStateToProps = (state: ReduxState) => ({
-  hasSplashScreenBeenShown: state.hasSplashScreenBeenShown,
-  grossRegularTimePay: state.grossRegularTimePay,
-  grossOvertimePay: state.grossOvertimePay,
-})
+const mapStateToProps = (state: ReduxState) => {
+  const {
+    hasCompletedIncomeForm,
+    hasSplashScreenBeenShown,
+    grossRegularTimePay,
+    grossOvertimePay,
+  } = state
+  return {
+    hasCompletedIncomeForm,
+    hasSplashScreenBeenShown,
+    grossRegularTimePay,
+    grossOvertimePay,
+  }
+}
 
 export default connect(
   mapStateToProps,
