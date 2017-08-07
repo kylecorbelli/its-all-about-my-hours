@@ -77,7 +77,7 @@ export default class IncomeForm extends React.Component<Props, State> {
     setTimeout(
       () => {
         if (this.grossRegularTimePayInput && !this.isMobile()) {
-          this.grossRegularTimePayInput.focus()
+          this.grossRegularTimePayInput.select()
         }
       },
       500
