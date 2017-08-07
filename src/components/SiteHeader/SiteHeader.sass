@@ -27,6 +27,13 @@
   font-size: 1.5em
   margin-top: 3px
   text-align: center
+  transition: color 0.1s ease-out, transform 0.1s ease-out
   +from($breakpoint-mobile-large)
     font-size: 2em
     margin-top: 7px
+    &:hover
+      color: $light-pink
+      transform: scale(1.02)
+    &:active
+      color: $dark-pink
+      transform: scale(0.98)
