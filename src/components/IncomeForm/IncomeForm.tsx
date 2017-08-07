@@ -113,7 +113,7 @@ export default class IncomeForm extends React.Component<Props, State> {
                 type="number"
                 onChange={this.handleRegularPayInputChange}
                 ref={element => this.grossRegularTimePayInput = element}
-                placeholder="Gross regular-time pay"
+                placeholder="Cumulative gross regular-time pay"
                 value={grossRegularTimePay}
               />
             </label>
@@ -126,7 +126,7 @@ export default class IncomeForm extends React.Component<Props, State> {
                 className={grossOvertimePayInputClasses}
                 type="number"
                 onChange={this.handleOvertimePayInputChange}
-                placeholder="Gross overtime pay"
+                placeholder="Cumulative gross overtime pay"
                 value={grossOvertimePay}
               />
             </label>
