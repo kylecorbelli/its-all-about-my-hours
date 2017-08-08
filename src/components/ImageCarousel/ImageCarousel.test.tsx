@@ -20,16 +20,18 @@ describe('ImageCarousel', () => {
   })
 
   describe('beginCyclingSlidingBlock', () => {
-    it('begins cycling the carousel', () => {
+    it('begins cycling the sliding block', () => {
       instance.beginCyclingSlidingBlock()
       expect(instance.state.isSlidingBlockCycling).toBe(true)
     })
   })
 
   describe('componentDidMount', () => {
-    it('sets an animation delay timeout that can later be cleared', () => {
+    it('triggers cycling the sliding block', () => {
+      const setTimeoutSpy = window.setTimeout = sinon.spy()
+      instance.beginCyclingSlidingBlock.bind = sinon.spy() // Needed to match up the first argument provided to setTimeout
       instance.componentDidMount()
-      expect(instance.beginCyclingSlidingBlockSetTimeoutId).toBeGreaterThan(0)
+      expect(setTimeoutSpy.calledWith(instance.beginCyclingSlidingBlock.bind(instance), instance.props.animationDelayMilliseconds)).toBe(true)
     })
   })
 
