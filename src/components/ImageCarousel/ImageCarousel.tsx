@@ -25,7 +25,7 @@ export default class ImageCarousel extends React.Component<Props, State> {
     isSlidingBlockCycling: false,
   }
 
-  private beginCyclingSlidingBlockSetTimeoutId: number
+  public beginCyclingSlidingBlockSetTimeoutId: number
 
   public componentDidMount (): void {
     const {
@@ -75,7 +75,7 @@ export default class ImageCarousel extends React.Component<Props, State> {
     )
   }
 
-  private beginCyclingSlidingBlock (): void {
+  public beginCyclingSlidingBlock (): void {
     this.setState({
       isSlidingBlockCycling: true,
     })
