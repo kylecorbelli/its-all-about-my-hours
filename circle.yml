@@ -1,6 +1,10 @@
 machine:
   node:
     version: 8.1.4
+test:
+  override:
+    - npm test -- --coverage
+    - ~/its-all-about-my-hours/node_modules/.bin/codecov -t $CODECOV_TOKEN
 deployment:
   production:
     branch: master
