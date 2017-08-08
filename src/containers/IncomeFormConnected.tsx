@@ -8,10 +8,9 @@ import {
   updateGrossRegularTimePay,
   updateGrossOvertimePay,
 } from '../redux/actions'
-
 import IncomeForm from '../components/IncomeForm'
 
-const mapStateToProps = (state: ReduxState) => {
+export const mapStateToProps = (state: ReduxState) => {
   const {
     hasCompletedIncomeForm,
     hasSplashScreenBeenShown,
