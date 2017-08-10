@@ -2,10 +2,12 @@ import * as React from 'react'
 import * as classnames from 'classnames'
 import './HoursResults.css'
 import ImageCarousel, { AnimationDirection } from '../ImageCarousel'
+import ExpectedCompletionMessage from '../ExpectedCompletionMessage'
 import { prettyNumber } from '../../services/text-formatting'
 import {
   calculateTotalHoursWorked,
   calculateTotalHoursRemaining,
+  calculateExpectedCompletionDate,
 } from '../../services/hours-calculations'
 
 const cakePopsImagePath: string = require('../../images/cake-pops.jpeg')
@@ -67,6 +69,11 @@ export default class HoursResults extends React.Component<Props, State> {
     } = this.props
     const totalHoursWorked: number = calculateTotalHoursWorked(grossRegularTimePay, grossOvertimePay)
     const totalHoursRemaining: number = calculateTotalHoursRemaining(grossRegularTimePay, grossOvertimePay)
+    const expectedCompletionDate: Date = calculateExpectedCompletionDate(
+      grossRegularTimePay,
+      grossOvertimePay,
+      new Date(),
+    )
     const {
       isFadeInFromLeftTileFadedIn,
       isFadeInFromRightTileFadedIn,
@@ -101,6 +108,7 @@ export default class HoursResults extends React.Component<Props, State> {
               Only&nbsp;
               <span className="HoursResults__headline-hour-number">{prettyNumber(totalHoursRemaining)}</span>
               &nbsp;More to Go!
+              <ExpectedCompletionMessage expectedCompletionDate={expectedCompletionDate} />
             </span>
           </div>
         </div>
@@ -130,6 +138,7 @@ export default class HoursResults extends React.Component<Props, State> {
               Only&nbsp;
               <span className="HoursResults__headline-hour-number">{prettyNumber(totalHoursRemaining)}</span>
               &nbsp;More to Go!
+              <ExpectedCompletionMessage expectedCompletionDate={expectedCompletionDate} />
             </span>
           </div>
         </div>

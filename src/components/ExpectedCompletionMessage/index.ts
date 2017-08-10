@@ -1,0 +1,2 @@
+import ExpectedCompletionMessage from './ExpectedCompletionMessage'
+export default ExpectedCompletionMessage

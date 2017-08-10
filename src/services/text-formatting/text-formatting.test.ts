@@ -1,6 +1,7 @@
 import {
   prettyNumber,
   stringifyOrBlankIfZero,
+  prettyDate,
 } from './index'
 
 describe('text-formatting service', () => {
@@ -41,6 +42,15 @@ describe('text-formatting service', () => {
 
     it('returns a blank string if the input is zero', () => {
       expect(stringifyOrBlankIfZero(0)).toBe('')
+    })
+  })
+
+  describe('prettyDate', () => {
+    it('formats the date real pretty like', () => {
+      const date: Date = new Date(2017, 8, 10)
+      const expectedPrettyDate: string = 'September 10, 2017'
+      const result: string = prettyDate(date)
+      expect(result).toBe(expectedPrettyDate)
     })
   })
 })
