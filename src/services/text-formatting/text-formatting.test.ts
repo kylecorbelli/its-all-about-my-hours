@@ -1,7 +1,7 @@
 import {
   prettyNumber,
   stringifyOrBlankIfZero,
-} from './text-formatting'
+} from './index'
 
 describe('text-formatting service', () => {
   describe('prettyNumber', () => {
