@@ -57,7 +57,11 @@ export const calculateNumberOfWeeksStillNeeded = (
   currentDate: Date,
 ): number => {
   const totalHoursRemaining: number = calculateTotalHoursRemaining(grossRegularTimePay, grossOvertimePay)
-  const averageHoursWorkedPerWeek: number = calculateAverageHoursWorkedPerWeek(grossRegularTimePay, grossOvertimePay, currentDate)
+  const averageHoursWorkedPerWeek: number = calculateAverageHoursWorkedPerWeek(
+    grossRegularTimePay,
+    grossOvertimePay,
+    currentDate,
+  )
   return totalHoursRemaining / averageHoursWorkedPerWeek
 }
 
@@ -73,7 +77,10 @@ export const calculateExpectedCompletionDate = (
   grossOvertimePay: number,
   currentDate: Date,
 ): Date => {
-  const numberOfWeeksStillNeeded: number = calculateNumberOfWeeksStillNeeded(grossRegularTimePay, grossOvertimePay, currentDate)
-  console.log(numberOfWeeksStillNeeded)
+  const numberOfWeeksStillNeeded: number = calculateNumberOfWeeksStillNeeded(
+    grossRegularTimePay,
+    grossOvertimePay,
+    currentDate,
+  )
   return calculateNWeeksLaterDate(currentDate, numberOfWeeksStillNeeded)
 }
